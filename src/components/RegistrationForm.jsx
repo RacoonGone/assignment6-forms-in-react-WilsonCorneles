@@ -11,6 +11,7 @@ export default function RegistrationForm () {
     })
     const [submittedData, setSubmittedData] = useState(null)
     const [errors, setErrors] = useState("")
+    const [showTerms, setShowTerms] = useState(false)
 
     function handleChange(e) {
         const { name, value, type, checked } = e.target
@@ -70,7 +71,13 @@ export default function RegistrationForm () {
                 </select>
             </div>
 
-            <label><input type="checkbox" name="acceptTerms" checked={formData.acceptTerms} onChange={handleChange}/>Accept Terms And Conditions</label>
+            <label><input type="checkbox" name="acceptTerms" checked={formData.acceptTerms} onChange={handleChange}/>Accept <span className="damnrule" onClick={(e) => {e.preventDefault(); setShowTerms(!showTerms)}}> Terms and Conditions</span></label>
+            {showTerms && (
+                <div className="theterms">
+                    <p>Terms and Conditions</p>
+                    <p>No Smoking, No Screaming, No Running, No Hiding, No Inappropriate Content, No Homo, No Max Albert Constantino, No Lowen Julian Bong</p>
+                </div>
+            )}
             <span className="error">{errors.acceptTerms}</span>
 
             <button type="submit">Register</button>
